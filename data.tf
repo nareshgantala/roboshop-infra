@@ -15,16 +15,16 @@ data "aws_subnet" "app" {
 
   filter {
     name   = "tag:Name"
-    values = ["${var.project}-${var.env}-app-subnet"]
+    values = ["${var.project}-${var.env}-app-subnet-0"]
   }
 }
 
-data "aws_subnet" "infra" {
+data "aws_subnet" "app1" {
   vpc_id = data.aws_vpc.selected.id
 
   filter {
     name   = "tag:Name"
-    values = ["${var.project}-${var.env}-infra-subnet"]
+    values = ["${var.project}-${var.env}-app-subnet-1"]
   }
 }
 
