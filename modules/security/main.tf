@@ -1,6 +1,6 @@
 resource "aws_security_group" "database_sg" {
   name        = "${var.project}-${var.env}-database-sg"
-  description = ""
+  description = "Security group for database instances"
   vpc_id      = data.aws_vpc.selected.id
 
   ingress {
@@ -8,7 +8,7 @@ resource "aws_security_group" "database_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = data.aws_vpc.selected.cidr_block
+    cidr_blocks = [data.aws_vpc.selected.cidr_block]
   }
 
   ingress {
@@ -16,15 +16,15 @@ resource "aws_security_group" "database_sg" {
     from_port   = 3306
     to_port     = 3306
     protocol    = "tcp"
-    cidr_blocks = data.aws_vpc.selected.cidr_block
+    cidr_blocks = [data.aws_vpc.selected.cidr_block]
   }
-  # Internal: Bastion Worker -> SonarQube scan reports
+
   ingress {
     description = "MongoDB"
     from_port   = 27017
     to_port     = 27017
     protocol    = "tcp"
-    cidr_blocks = data.aws_vpc.selected.cidr_block
+    cidr_blocks = [data.aws_vpc.selected.cidr_block]
   }
 
   ingress {
@@ -32,7 +32,7 @@ resource "aws_security_group" "database_sg" {
     from_port   = 6379
     to_port     = 6379
     protocol    = "tcp"
-    cidr_blocks = data.aws_vpc.selected.cidr_block
+    cidr_blocks = [data.aws_vpc.selected.cidr_block]
   }
 
   ingress {
@@ -40,7 +40,7 @@ resource "aws_security_group" "database_sg" {
     from_port   = 5672
     to_port     = 5672
     protocol    = "tcp"
-    cidr_blocks = data.aws_vpc.selected.cidr_block
+    cidr_blocks = [data.aws_vpc.selected.cidr_block]
   }
 
   egress {
