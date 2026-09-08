@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Terraform Init') {
+            steps {
+                echo 'Initializing Terraform...'
+                sh 'terraform init -backend-config="env/Dev/backend.tfvars"'
+            }
+        }
+        stage('Terraform Plan') {
+            steps {
+                echo 'Planning Terraform...'
+                sh 'terraform plan -var-file="env/Dev/terraform.tfvars"'
+            }
+        }
+    }
+}
