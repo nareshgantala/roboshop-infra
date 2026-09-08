@@ -6,12 +6,3 @@ variable "project" {
 variable "env" {
   type = string
 }
-
-variable "cluster_role_arn" {
-  type = string
-}
-
-
-variable "node_role_arn" {
-  type = string
-}
