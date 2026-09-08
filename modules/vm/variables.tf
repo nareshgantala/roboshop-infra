@@ -14,7 +14,8 @@ variable "sg_id" {
 }
 
 variable "project" {
-  type = string
+  type    = string
+  default = "roboshop"
 }
 
 variable "env" {
