@@ -8,7 +8,7 @@ resource "aws_instance" "database" {
   vpc_security_group_ids      = [var.sg_id]
   root_block_device {
     volume_size = 50
-    volume_type = "gp3" # Optional: defaults to standard or gp2 depending on provider version
+    volume_type = "gp3"
   }
   user_data = file("${path.module}/../../scripts/${each.key}.sh")
 
